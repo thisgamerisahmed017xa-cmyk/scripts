@@ -1,5 +1,5 @@
 -- ==========================================
--- [ULTIMATE KEYBOARD HUB - AUTO STAGE & AUTO MONEY]
+-- [ULTIMATE KEYBOARD HUB - FIXED AUTO STAGE]
 -- [Creator: Ahmed's Elite Hub]
 -- ==========================================
 
@@ -59,7 +59,7 @@ Title.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
 Title.Font = Enum.Font.GothamBold
 Title.TextColor3 = Color3.fromRGB(0, 255, 150)
 Title.TextSize = 15
-Title.Text = "🔥 [AUTO STAGE & MONEY HUB] 🔥"
+Title.Text = "🔥 [FIXED KEYBOARD HUB] 🔥"
 
 local TitleCorner = Instance.new("UICorner", Title)
 TitleCorner.CornerRadius = UDim.new(0, 12)
@@ -96,17 +96,19 @@ local function createButton(text, color, callback)
     return btn
 end
 
--- ==================== المميزات الخارقة ====================
+-- ==================== المميزات المُحدثة ====================
 
--- 1. الفوز وتخطي المراحل تلقائياً (Auto Stage / Win)
+-- 1. الفوز وتخطي المراحل المحدث (يتجنب بوابات العوالم ويركز على اللعب)
 local autoStage = false
-createButton("🏆 تفعيل إنهاء وتخطي المراحل تلقائياً (Auto Stage)", Color3.fromRGB(200, 0, 100), function()
+createButton("🏆 ختم المراحل الحالية تلقائياً (Fixed Auto Stage)", Color3.fromRGB(200, 0, 100), function()
     autoStage = not autoStage
     task.spawn(function()
         while autoStage do
             pcall(function()
                 for _, obj in pairs(workspace:GetDescendants()) do
-                    if obj:IsA("BasePart") and (string.lower(obj.Name):find("win") or string.lower(obj.Name):find("finish") or string.lower(obj.Name):find("stage") or string.lower(obj.Name):find("portal")) then
+                    -- استبعاد بوابات العوالم والتركيز على أهداف المراحل الداخلية
+                    local name = string.lower(obj.Name)
+                    if obj:IsA("BasePart") and (name:find("goal") or name:find("target") or name:find("endlevel") or name:find("checkpoint")) then
                         local char = LocalPlayer.Character
                         if char and char:FindFirstChild("HumanoidRootPart") then
                             char.HumanoidRootPart.CFrame = obj.CFrame + Vector3.new(0, 3, 0)
@@ -180,4 +182,4 @@ createButton("❌ إغلاق الواجهة", Color3.fromRGB(180, 40, 40), funct
     ScreenGui:Destroy()
 end)
 
-print("[SUCCESS]: Auto Stage & Money Hub Loaded!")
+print("[SUCCESS]: Fixed Keyboard Hub Loaded!")
