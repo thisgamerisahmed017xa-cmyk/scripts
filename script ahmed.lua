@@ -1,45 +1,62 @@
 -- ===================================================
--- [AHMED CUSTOM AUDIO & FE TROLL ENGINE]
--- [File: script ahmed.lua]
+-- [AHMED DELTA TRUE FE GOD & TROLL HUB]
+-- [File: scrimt ahmed.Lua]
 -- ===================================================
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
+local Lighting = game:GetService("Lighting")
 
--- واجهة التحكم الخاصة بالأغاني والترويل
-if LocalPlayer.PlayerGui:FindFirstChild("AhmedAudioHub") then
-    LocalPlayer.PlayerGui.AhmedAudioHub:Destroy()
+-- 🛡️ حماية دلتا الشاملة
+pcall(function()
+    local mt = getrawmetatable(game)
+    setreadonly(mt, false)
+    local oldNamecall = mt.__namecall
+    mt.__namecall = newcclosure(function(self, ...)
+        local method = getnamecallmethod()
+        if method == "Kick" or method == "Ban" then
+            return nil
+        end
+        return oldNamecall(self, ...)
+    end)
+    setreadonly(mt, true)
+end)
+
+-- 🎨 واجهة التحكم الفخمة
+if LocalPlayer.PlayerGui:FindFirstChild("AhmedTrueFEHub") then
+    LocalPlayer.PlayerGui.AhmedTrueFEHub:Destroy()
 end
 
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "AhmedAudioHub"
+ScreenGui.Name = "AhmedTrueFEHub"
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ResetOnSpawn = false
 
 local MainFrame = Instance.new("Frame")
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(15, 10, 25)
-MainFrame.Position = UDim2.new(0.5, -180, 0.3, -200)
-MainFrame.Size = UDim2.new(0, 360, 0, 420)
+MainFrame.BackgroundColor3 = Color3.fromRGB(15, 5, 25)
+MainFrame.Position = UDim2.new(0.5, -190, 0.25, -220)
+MainFrame.Size = UDim2.new(0, 380, 0, 560)
 MainFrame.Active = true
 MainFrame.Draggable = true
 
 Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 16)
 local Stroke = Instance.new("UIStroke", MainFrame)
-Stroke.Color = Color3.fromRGB(255, 0, 200)
+Stroke.Color = Color3.fromRGB(255, 0, 150)
 Stroke.Thickness = 3
 
 local Title = Instance.new("TextLabel")
 Title.Parent = MainFrame
 Title.Size = UDim2.new(1, 0, 0, 50)
-Title.BackgroundColor3 = Color3.fromRGB(30, 15, 45)
+Title.BackgroundColor3 = Color3.fromRGB(35, 10, 45)
 Title.Font = Enum.Font.GothamBold
-Title.TextColor3 = Color3.fromRGB(255, 100, 255)
-Title.TextSize = 14
-Title.Text = "🎵 [AHMED CUSTOM AUDIO & FE HUB] 🎵"
+Title.TextColor3 = Color3.fromRGB(255, 0, 150)
+Title.TextSize = 13
+Title.Text = "🔥 [AHMED TRUE FE MASTER HUB] 🔥"
 Instance.new("UICorner", Title).CornerRadius = UDim.new(0, 16)
 
 local ScrollingFrame = Instance.new("ScrollingFrame")
@@ -47,7 +64,7 @@ ScrollingFrame.Parent = MainFrame
 ScrollingFrame.Position = UDim2.new(0, 0, 0, 60)
 ScrollingFrame.Size = UDim2.new(1, 0, 1, -65)
 ScrollingFrame.BackgroundTransparency = 1
-ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 500)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 900)
 ScrollingFrame.ScrollBarThickness = 5
 
 local UIList = Instance.new("UIListLayout", ScrollingFrame)
@@ -69,8 +86,82 @@ local function createButton(text, color, callback)
     return btn
 end
 
--- 1. زر تشغيل الصوت المزعج في السيرفر FE
-createButton("🎶 تشغيل الصوت للكل (FE Custom Audio)", Color3.fromRGB(180, 0, 120), function()
+-- ===================================================
+-- 💥 [مميزات الـ FE الحقيقية التي تظهر للجميع]
+-- ===================================================
+
+-- 1. طيران حقيقي يراه الجميع (FE Real Server-Synced Fly)
+createButton("🛸 طيران حقيقي يراه الجميع (FE Real Fly)", Color3.fromRGB(200, 50, 0), function()
+    _G.AhmedFEFly = not _G.AhmedFEFly
+    local char = LocalPlayer.Character
+    if not char or not char:FindFirstChild("HumanoidRootPart") then return end
+    
+    if _G.AhmedFEFly then
+        local bv = Instance.new("BodyVelocity")
+        bv.Name = "FE_FlyVel"
+        bv.Parent = char.HumanoidRootPart
+        bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        
+        task.spawn(function()
+            while _G.AhmedFEFly and char and char:FindFirstChild("HumanoidRootPart") do
+                bv.Velocity = Workspace.CurrentCamera.CFrame.LookVector * 100 + Vector3.new(0, 2, 0)
+                task.wait(0.01)
+            end
+            bv:Destroy()
+        end)
+    end
+end)
+
+-- 2. دوران مروحي مرعب يراه الجميع (FE Spin Bot)
+createButton("🚁 الدوران المروحي المرعب للكل (FE Spin Bot)", Color3.fromRGB(150, 0, 150), function()
+    local char = LocalPlayer.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        if char.HumanoidRootPart:FindFirstChild("FE_SpinTroll") then
+            char.HumanoidRootPart.FE_SpinTroll:Destroy()
+        else
+            local bav = Instance.new("BodyAngularVelocity")
+            bav.Name = "FE_SpinTroll"
+            bav.Parent = char.HumanoidRootPart
+            bav.MaxTorque = Vector3.new(0, math.huge, 0)
+            bav.AngularVelocity = Vector3.new(0, 4000, 0)
+        end
+    end)
+end)
+
+-- 3. تضخيم الجسم أو جعله عملاقاً يراه الجميع (FE Giant Scale)
+createButton("🦖 التحول لعملاق يراه الجميع (FE Giant Size)", Color3.fromRGB(0, 140, 70), function()
+    pcall(function()
+        local char = LocalPlayer.Character
+        if char and char:FindFirstChild("Humanoid") then
+            local hum = char.Humanoid
+            hum.BodyHeightScale.Value = 3.0
+            hum.BodyWidthScale.Value = 2.5
+            hum.HeadScale.Value = 2.0
+        end
+    end)
+end)
+
+-- 4. شفط العملات والفلوس الحقيقي في الماب
+createButton("💰 شفط الفلوس والعملات التلقائي (Auto Farm)", Color3.fromRGB(0, 150, 80), function()
+    task.spawn(function()
+        while true do
+            pcall(function()
+                local char = LocalPlayer.Character
+                if char and char:FindFirstChild("HumanoidRootPart") then
+                    for _, obj in pairs(Workspace:GetDescendants()) do
+                        if obj:IsA("BasePart") and (string.lower(obj.Name):find("coin") or string.lower(obj.Name):find("cash") or string.lower(obj.Name):find("money") or string.lower(obj.Name):find("gem")) then
+                            obj.CFrame = char.HumanoidRootPart.CFrame
+                        end
+                    end
+                end
+            end)
+            task.wait(0.1)
+        end
+    end)
+end)
+
+-- 5. تشغيل الصوت الخاص بك FE لكل السيرفر
+createButton("🎶 تشغيل أغنيتك الخاصة للكل (FE Custom Audio)", Color3.fromRGB(180, 0, 120), function()
     pcall(function()
         local customAudioId = "rbxassetid://1848354536"
         for _, v in pairs(Workspace:GetDescendants()) do
@@ -84,30 +175,9 @@ createButton("🎶 تشغيل الصوت للكل (FE Custom Audio)", Color3.fro
     end)
 end)
 
--- 2. الدوران المروحي FE (يبان للجميع)
-createButton("🚁 الدوران المروحي للكل (FE Spin Bot)", Color3.fromRGB(120, 0, 180), function()
-    local char = LocalPlayer.Character
-    if char and char:FindFirstChild("HumanoidRootPart") then
-        local bav = Instance.new("BodyAngularVelocity", char.HumanoidRootPart)
-        bav.MaxTorque = Vector3.new(0, math.huge, 0)
-        bav.AngularVelocity = Vector3.new(0, 3000, 0)
-    end
-end)
-
--- 3. التحول لحجم نملة FE
-createButton("🐜 التحول لحجم نملة صغيرة (Micro Size)", Color3.fromRGB(0, 140, 70), function()
-    local char = LocalPlayer.Character
-    if char and char:FindFirstChild("Humanoid") then
-        local hum = char.Humanoid
-        hum.BodyHeightScale.Value = 0.2
-        hum.BodyWidthScale.Value = 0.2
-        hum.HeadScale.Value = 0.2
-    end
-end)
-
 -- زر الإغلاق
 createButton("❌ إغلاق الواجهة", Color3.fromRGB(150, 20, 20), function()
     ScreenGui:Destroy()
 end)
 
-print("[SUCCESS]: script ahmed.lua Loaded!")
+print("[SUCCESS]: Ahmed True FE Master Hub Loaded!")
